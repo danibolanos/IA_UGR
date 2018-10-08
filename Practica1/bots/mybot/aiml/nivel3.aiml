@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+<!--Regla 1: Inicio del juego e intenta adivinar la fruta-->
+<category>
+<pattern>^ adivina una fruta ^</pattern>
+<template>
+  <think>
+  <set name="pos_frutas"> <readset>frutas</readset> </set>
+  <set name="unknown">unknown</set>
+  <set name="si">si</set>
+  <set name="no">no</set>
+  <set name="enganio">Me engañaste diciendo que: </set>
+  </think>
+  Piensa la fruta y avisame cuando estes preparado.
+</template>
+</category>
+
+<!--Funciones-->
+<category>
+<pattern>ELIMINA * IN *</pattern>
+<template>
+  <think>
+    <set var="lista"><star index="2"/></set>
+    <set var="cantidad"><srai> COUNT <star index="2"/></srai></set>
+    <set var="cantidad"><map name="successor"><get var="cantidad"/></map></set>
+    <set var="contador">1</set>
+    <set var="claves"><star index="2"/></set>
+  </think>
+  <condition var="contador">
+    <li><value><get var="cantidad"/></value></li>
+    <li>
+      <think>
+      <set var="item_col"><map name="frutas"><srai>SELECTITEM <get var="contador"/> IN <star index="2"/></srai></map></set>
+      <set var="es"><srai>FINDITEM <star index="1"/> IN <get var="item_col"/></srai></set>
+      </think>
+      <condition var="es">
+      <li value="0"></li>
+      <li>
+        <think>
+        <set var="frutita"><srai>SELECTITEM <get var="contador"/> IN <get var="claves"/></srai></set>
+        <set var="pos"><srai>FINDITEM <get var="frutita"/> IN <get var="lista"/></srai></set>
+        <set var="lista"><srai>REMOVEITEM <get var="pos"/> IN <get var="lista"/></srai></set>
+        </think>
+      </li>
+      </condition>
+      <think>
+      <set var="contador"><map name="successor"><get var="contador"/></map></set>
+      </think>
+      <loop/>
+    </li>
+  </condition>
+  <get var="lista"/>
+</template>
+</category>
+
+<category>
+<pattern>ANIADE * IN *</pattern>
+<template>
+  <think>
+    <set var="cantidad"><srai> COUNT <star index="2"/></srai></set>
+    <set var="cantidad"><map name="successor"><get var="cantidad"/></map></set>
+    <set var="contador">1</set>
+    <set var="claves"><star index="2"/></set>
+  </think>
+  <condition var="contador">
+    <li><value><get var="cantidad"/></value></li>
+    <li>
+      <think>
+      <set var="item_col"><map name="frutas"><srai>SELECTITEM <get var="contador"/> IN <star index="2"/></srai></map></set>
+      <set var="es"><srai>FINDITEM <star index="1"/> IN <get var="item_col"/></srai></set>
+      </think>
+      <condition var="es">
+      <li value="0"></li>
+      <li>
+        <think>
+        <set var="frutita"><srai>SELECTITEM <get var="contador"/> IN <get var="claves"/></srai></set>
+        <set var="lista"><srai>ADDITEM <get var="frutita"/> IN <get var="lista"/></srai></set>
+        </think>
+      </li>
+      </condition>
+      <think>
+      <set var="contador"><map name="successor"><get var="contador"/></map></set>
+      </think>
+      <loop/>
+    </li>
+  </condition>
+  <get var="lista"/>
+</template>
+</category>
+
+<category>
+  <pattern> CON LISTA * PASO A * </pattern>
+  <template>
+    <think>
+      <set var="cantidad"><srai> COUNT <star index="1"/></srai></set>
+    </think>
+    <condition var="cantidad">
+      <li value="1">
+        <srai>adivinacion</srai>
+      </li>
+      <li value="0">No encuentro coincidencias... <srai>error con la fruta</srai></li>
+      <li><srai><star index="2"/></srai></li>
+    </condition>
+  </template>
+</category>
+
+<category>
+  <pattern> ENGANIOS * </pattern>
+  <template>
+    <think>
+    <set var="item_col"><map name="frutas"> <star/> </map></set>
+    <set var="cantidad"><srai>COUNT <get name="respuestas"/></srai></set>
+    <set var="cantidad"><map name="successor"><get var="cantidad"/></map></set>
+    <set var="contador">1</set>
+    <set var="lista">verde amarillo pequenio semiacido A acido</set>
+    <set var="no">0</set>
+    <set name="enganio"><get name="enganio"/> <star/></set>
+    </think>
+    <condition var="contador">
+      <li><value><get var="cantidad"/></value></li>
+      <li>
+      <think>
+      <set var="pregunte"><srai>SELECTITEM <get var="contador"/> IN <get var="lista"/></srai></set>
+      <set var="es"><srai>FINDITEM <get var="pregunte"/> IN <get var="item_col"/></srai></set>
+      <set var="respondi"><srai>SELECTITEM <get var="contador"/> IN <get name="respuestas"/></srai></set>
+      </think>
+      <condition var="respondi">
+      <li><value><get name="si"/></value>
+      <condition var="es">
+        <li><value><get var="no"/></value>
+        <think>
+        <set name="enganio"><get name="enganio"/>, si era <get var="pregunte"/> </set>
+        </think>
+        </li>
+        <li></li>
+      </condition>
+      </li>
+      <li><value><get name="no"/></value>
+      <condition var="es">
+        <li><value><get var="no"/></value></li>
+        <li>
+        <think>
+        <set name="enganio"><get name="enganio"/>, no era <get var="pregunte"/> </set>
+        </think>
+        </li>
+      </condition>
+      </li>
+      </condition>
+    <think>
+    <set var="contador"><map name="successor"><get var="contador"/></map></set>
+    </think>
+    <loop/>
+    </li>
+    </condition>
+    <get name="enganio"/>
+  </template>
+</category>
+
+<!--Regla 2: Colores-->
+<!--Regla 2.1: Verde-->
+<category>
+<pattern>^ [ya prepar+] ^</pattern>
+<template>
+  <think>
+    <set name="verificada">VERDE</set>
+  </think>
+  Puede ser de color VERDE
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ Puede ser de color VERDE </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set name="respuestas"><get name="no"/></set>
+  </think>
+  <srai>preg_amarillo</srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ Puede ser de color VERDE </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="respuestas"><get name="si"/></set>
+  </think>
+  <srai>preg_amarillo</srai>
+</template>
+</category>
+
+<!--Regla 2.2: Amarillo-->
+<category>
+<pattern>preg_amarillo</pattern>
+<template>
+  <think>
+    <set name="verificada">AMARILLO</set>
+  </think>
+  Puede ser de color AMARILLO
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ Puede ser de color AMARILLO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set name="respuestas"><get name="respuestas"/> <get name="no"/></set>
+  </think>
+  <srai>preg_peque</srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ Puede ser de color AMARILLO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="respuestas"><get name="respuestas"/> <get name="si"/></set>
+  </think>
+  <srai>preg_peque</srai>
+</template>
+</category>
+
+<!--Regla 3: Tamanio-->
+<!--Regla 3.1: Pequenio-->
+<category>
+<pattern>preg_peque</pattern>
+<template>
+  <think>
+    <set name="verificada">PEQUENIO</set>
+  </think>
+  Es PEQUENIO
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ Es PEQUENIO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="sig_preg">preg_semiacido</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="no"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ Es PEQUENIO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set var="sig_preg">preg_semiacido</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="si"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+
+<!--Regla 4: Sabores-->
+<!--Regla 4.1: Semiacido-->
+<category>
+<pattern>preg_semiacido</pattern>
+<template>
+  <think>
+    <set name="verificada">SEMIACIDO</set>
+  </think>
+  Tiene sabor SEMIACIDO
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ tiene sabor SEMIACIDO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="sig_preg">preg_vitaminas</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="no"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ tiene sabor SEMIACIDO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set var="sig_preg">preg_vitaminas</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="si"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<!--Regla 5: Vitaminas-->
+<!--Regla 5.1: Vitamina A-->
+<category>
+<pattern>preg_vitaminas</pattern>
+<template>
+  <think>
+    <set name="verificada">A</set>
+  </think>
+  Tiene vitamina A
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ tiene vitamina A </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="sig_preg">ultima</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="no"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ tiene vitamina A </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set var="sig_preg">ultima</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="si"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<!--Caso problemático-->
+<category>
+<pattern>ultima</pattern>
+<template>
+  <think>
+    <set name="verificada">ACIDO</set>
+  </think>
+  Es ACIDO
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that>^ es ACIDO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ELIMINA <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="sig_preg">adivinacion</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="no"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that>^ es ACIDO </that>
+<template>
+  <think>
+  <set name="pos_frutas">
+  <srai>ANIADE <get name="verificada"/> IN <get name="pos_frutas"/></srai>
+  </set>
+  <set var="pos"><srai>FINDITEM <get name="unknown"/> IN <get name="pos_frutas"/></srai></set>
+  <set name="pos_frutas"><srai>REMOVEITEM <get var="pos"/> IN <get name="pos_frutas"/></srai></set>
+  <set var="sig_preg">preg_vitaminas</set>
+  <set name="respuestas"><get name="respuestas"/> <get name="si"/></set>
+  </think>
+  <srai>CON LISTA <get name="pos_frutas"/> PASO A <get var="sig_preg"/></srai>
+</template>
+</category>
+
+<!--Regla 6: Adivina fruta-->
+
+<category>
+<pattern>adivinacion</pattern>
+<template>
+  <think>
+  <set var="contador">1</set>
+  <set var="adivinacion"><srai>SELECTITEM <get var="contador"/> IN <get name="pos_frutas"/></srai></set>
+  </think>
+  Tu fruta es <get var="adivinacion"/>
+</template>
+</category>
+
+<category>
+<pattern>[Si correcto]</pattern>
+<that> Tu fruta es * </that>
+<template>
+  Soy un genio. <srai>^ jugar otra partida ^</srai>
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that> Tu fruta es * </that>
+<template>
+  <srai>error con la fruta</srai>
+</template>
+</category>
+
+<category>
+<pattern>error con la fruta</pattern>
+<template>
+  Cual era tu fruta entonces
+</template>
+</category>
+
+<category>
+<pattern><set>frutas</set></pattern>
+<that> Cual era tu fruta entonces </that>
+<template>
+  <srai>ENGANIOS <star/> </srai>. Y eso no es cierto. <srai>^ jugar otra partida ^</srai>
+</template>
+</category>
+
+<category>
+<pattern>^ jugar otra partida ^</pattern>
+<template>
+  Quieres jugar de nuevo
+</template>
+</category>
+
+<category>
+<pattern>Si</pattern>
+<that> QUIERES JUGAR DE NUEVO </that>
+<template>
+  <srai>^ adivina una fruta ^</srai>
+</template>
+</category>
+
+<category>
+<pattern>No</pattern>
+<that> QUIERES JUGAR DE NUEVO </that>
+<template>
+  Hasta pronto!!
+</template>
+</category>
+
+</aiml>

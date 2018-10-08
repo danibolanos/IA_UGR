@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+
+<!--Regla 1: Inicio del juego y piensa en fruta-->
+<category>
+<pattern>^ piensa una fruta ^</pattern>
+<template>
+  <condition name="elegida">
+  <li value="unknown">
+  <think>
+  <set name="frutas"> <readset>frutas</readset> </set>
+  <set var="lista"> <get name="frutas"/> </set>
+  <set var="cantidad"> <srai> COUNT <get var="lista"/> </srai> </set>
+  <set var="pos"> <srai> RANDOM <get var="cantidad"/> </srai> </set>
+  <set name="elegida"> <srai> SELECTITEM <get var="pos"/> IN <get var="lista"/> </srai> </set>
+  </think>
+  Ya he pensado en una fruta. ¡PREGUNTA!
+  </li>
+  <li> Quieres reiniciar el juego? </li>
+  </condition>
+</template>
+</category>
+
+<!--Regla 2: Reinicio del juego-->
+<category>
+<pattern>^ Si ^</pattern>
+<that> QUIERES REINICIAR EL JUEGO </that>
+<template>
+<think><set name="elegida"> unknown </set></think>
+<srai> PIENSA UNA FRUTA </srai>
+</template>
+</category>
+
+<category>
+<pattern>^ No ^</pattern>
+<that> QUIERES REINICIAR EL JUEGO </that>
+<template>
+Continue preguntando...
+</template>
+</category>
+
+<!--Regla 3: Solucionar la partida-->
+<category>
+<pattern>^ es [el la] <set>frutas</set></pattern>
+<template>
+  <condition name="elegida">
+  <li><value><star index="2"/></value>Sí es <get name="elegida"/>.</li>
+  <li> No, sigue intentandolo...</li>
+</condition>
+</template>
+</category>
+
+<category>
+<pattern>^ es [el la] *</pattern>
+<template>
+No conozco esa fruta.
+</template>
+</category>
+
+<!--Regla 4: Preguntas sobre frutas-->
+
+<!--Colores-->
+<category>
+<pattern># <set>frutas</set> ^ color <set>color</set></pattern>
+<template>
+  <think>
+  <set var="elcol"><map name="frutas"><star index="2"/></map></set>
+  <set var="existe">
+  <srai> FINDITEM <star index="4"/> IN <get var="elcol"/></srai>
+  </set>
+  </think>
+  <condition var="existe">
+  <li value="0">No.</li>
+  <li>Sí.</li>
+  </condition>
+</template>
+</category>
+
+<!--Vitaminas-->
+<category>
+<pattern># <set>frutas</set> ^ vitamina <set>vitaminas</set></pattern>
+<template>
+  <think>
+  <set var="lavit"><map name="frutas"><star index="2"/></map></set>
+  <set var="existe">
+  <srai> FINDITEM <star index="4"/> IN <get var="lavit"/></srai>
+  </set>
+  </think>
+  <condition var="existe">
+  <li value="0">No.</li>
+  <li>Sí.</li>
+  </condition>
+</template>
+</category>
+
+<!--Tamanio-->
+<category>
+<pattern># <set>frutas</set> ^ <set>tamanio</set></pattern>
+<template>
+  <think>
+  <set var="eltam"><map name="frutas"><star index="2"/></map></set>
+  <set var="existe">
+  <srai> FINDITEM <star index="4"/> IN <get var="eltam"/></srai>
+  </set>
+  </think>
+  <condition var="existe">
+  <li value="0">No.</li>
+  <li>Sí.</li>
+  </condition>
+</template>
+</category>
+
+<!--Sabor-->
+<category>
+<pattern># <set>frutas</set> ^ <set>sabor</set></pattern>
+<template>
+  <think>
+  <set var="elsab"><map name="frutas"><star index="2"/></map></set>
+  <set var="existe">
+  <srai> FINDITEM <star index="4"/> IN <get var="elsab"/></srai>
+  </set>
+  </think>
+  <condition var="existe">
+  <li value="0">No.</li>
+  <li>Sí.</li>
+  </condition>
+</template>
+</category>
+
+<!--Regla 5: Preguntas para adivinar la fruta pensada-->
+
+<!--Color-->
+<category>
+<pattern>es <set>color</set></pattern>
+<template>
+  <srai>ES <get name="elegida"/> COLOR <star/></srai>
+</template>
+</category>
+
+<!--Tamanio-->
+<category>
+<pattern>es <set>tamanio</set></pattern>
+<template>
+  <srai>ES <get name="elegida"/> TAMANIO <star/></srai>
+</template>
+</category>
+
+<!--Sabor-->
+<category>
+<pattern>es <set>sabor</set></pattern>
+<template>
+  <srai>ES <get name="elegida"/> SABOR <star/></srai>
+</template>
+</category>
+
+<!--Vitaminas-->
+<category>
+<pattern>tiene vitamina <set>vitaminas</set></pattern>
+<template>
+  <srai>ES <get name="elegida"/> VITAMINA <star/></srai>
+</template>
+</category>
+
+</aiml>

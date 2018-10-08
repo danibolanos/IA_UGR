@@ -1,0 +1,79 @@
+0,* SUPER+ ^ LA PARTE PRACTICA ^,*,*,La nota media de las prácticas y problemas tiene que ser mayor o igual a 3 sobre 10.,nivel0.aiml
+0,* SUPER+ ^ PRACTICA+ ^,*,*,<srai>* SUPERAR LA PARTE PRACTICA ^</srai>,nivel0.aiml
+0,* APR+ ^ PRACTICA+ ^,*,*,<srai>* SUPERAR LA PARTE PRACTICA ^</srai>,nivel0.aiml
+0,* EVALU+ ^ TEORI+ ^,*,*,Para la parte de teoría durante el curso se realizarán tres pruebas que corresponderán a 2 puntos sobre 10 de la nota final del curso. El resto de puntos (8 sobre 10) se podrán obtener en un examen final.,nivel0.aiml
+0,* APR+ ^ TEORI+ ^,*,*,<srai>* EVALUA LA TEORIA ^</srai>,nivel0.aiml
+0,* EVALU+ ^ PRACTICA+ ^,*,*,Para la parte de prácticas se tendrá en cuenta la asistencia y se realizarán tres prácticas y un examen junto al final. Se hará la media de las cuatro pruebas.,nivel0.aiml
+0,* EVALU+ ^ CONVOCATORIA ORDINARIA ^,*,*,<srai>* EVALUA LA TEORIA ^</srai><srai>* EVALUAN LAS PRACTICAS ^</srai>,nivel0.aiml
+0,* EVALU+ ^ LA ASIGNATURA ^,*,*,<srai>* EVALUA EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* EVALU+ ^ PRACTICA+ * TEORIA ^,*,*,<srai>* EVALUA EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* EVALU+ ^ TEORIA * PRACTICA+ ^,*,*,<srai>* EVALUA EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* APR+ ^ LA ASIGNATURA ^,*,*,<srai>* EVALUA EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* SUPER+ ^ LA ASIGNATURA ^,*,*,<srai>* EVALUA EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* PRACTICA+ ^ CONVOCATORIA EXTRAORDINARIA ^,*,*,Habrá algunos problemas relacionados con lo visto el la parte práctica de la asignatura.,nivel0.aiml
+0,* CONVOCATORIA EXTRAORDINARIA ^ PRACTICA+ ^,*,*,<srai>* PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai>,nivel0.aiml
+0,* SUSPEND+ ^ PRACTICA+ ^ CONVOCATORIA EXTRAORDINARIA ^,*,*,<srai>* PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai>,nivel0.aiml
+0,* EVALU+ ^ PRACTICA+ ^ CONVOCATORIA EXTRAORDINARIA ^,*,*,<srai>* PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai>,nivel0.aiml
+0,* NO ^ ASIST+ A CLASE ^,*,*,En teoría la asistencia no es obligatoria#Comma pero en prácticas será necesaria para defender las prácticas y se tendrá en cuenta en el 10% de la nota.,nivel0.aiml
+0,* NO ^ VOY A CLASE ^,*,*,<srai>* NO ASISTO A CLASE ^</srai>,nivel0.aiml
+0,* NO ^ IR+ A CLASE ^,*,*,<srai>* NO ASISTO A CLASE ^</srai>,nivel0.aiml
+0,* NOTA MINIMA * APROBAR ^,*,*,Tanto en teoría como en prácticas la nota mínima es un 3#Comma pero la media de ambas tiene que ser igual o mayor que 5.,nivel0.aiml
+0,* MINIMO * APROBAR ^,*,*,<srai>* NOTA MINIMA PARA APROBAR ^</srai>,nivel0.aiml
+0,* PRACTICAS * OBLIGATORI+ ^,*,*,Las sesiones prácticas en las que se defiendan las prácticas frente al profesor son obligatorias ya que si no se asiste#Comma la práctica se dará por no presentada. También puede optar a la evaluación única final y realizar el examen de prácticas y teoría conjuntamente.,nivel0.aiml
+0,* OBLIGATOR+ * PRACTICAS ^,*,*,<srai>* PRACTICAS SON OBLIGATORIAS ^</srai>,nivel0.aiml
+0,* PRACTICA ^ RESPECTO * NOTA FINAL ^,*,*,Cada una vale un 25% sobre el 50% que representan las prácticas en la asignatura.,nivel0.aiml
+0,* VALE+ * PRACTICA+,*,*,<srai>* PRACTICA ^ RESPECTO * NOTA FINAL ^</srai>,nivel0.aiml
+0,* PARTICIPACION ^ RESPECTO * NOTA FINAL ^,*,*,Vale un 10% sobre el 50% que representan las prácticas.,nivel0.aiml
+0,* VALE+ ^ PARTICIPA+ ^,*,*,<srai>* PARTICIPACION ^ RESPECTO * NOTA FINAL ^</srai>,nivel0.aiml
+0,* PUNTOS ^ PARTICIPA+ ^,*,*,Participando de forma activa en las clases prácticas.,nivel0.aiml
+0,* NOTA ^ PARTICIPA+ ^,*,*,<srai>* PUNTOS PARTICIPANDO ^</srai>,nivel0.aiml
+0,* TRABAJOS ^ INDIVIDUAL+ ^,*,*,Sí. Es más cualquier señal o intento de copia supone el suspenso en la asignatura.,nivel0.aiml
+0,* PRACTICAS ^ INDIVIDUAL+ ^,*,*,<srai>* TRABAJOS SON INDIVIDUALES ^</srai>,nivel0.aiml
+0,* TRABAJOS ^ GRUP+ ^,*,*,No. Es más cualquier señal o intento de copia supone el suspenso en la asignatura.,nivel0.aiml
+0,* PRACTICAS ^ GRUP+ ^,*,*,<srai>* TRABAJOS EN GRUPO ^</srai>,nivel0.aiml
+0,* PRACTICAS ^ PAREJA ^,*,*,<srai>* TRABAJOS EN GRUPO ^</srai>,nivel0.aiml
+0,* ENTREG+ ^ EJERCICIOS ^,*,*,Solo si el profesor lo indica con antelación.,nivel0.aiml
+0,* EJERCICIOS * DIAPOSITIVAS ^,*,*,<srai>* ENTREGAS EJERCICIOS ^</srai>,nivel0.aiml
+0,* EJERCICIOS * PROBLEMAS ^,*,*,<srai>* ENTREGAS EJERCICIOS ^</srai>,nivel0.aiml
+0,* EJERCICIOS * RELACION+ ^,*,*,<srai>* ENTREGAS EJERCICIOS ^</srai>,nivel0.aiml
+0,* PRIMER+ * DE TEORIA ^,*,*,El primer parcial vale 0#Comma5 puntos sobre el 50% de la parte teórica.,nivel0.aiml
+0,* PRIMER+ * TEORIC+ ^,*,*,<srai>* PRIMER * DE TEORIA ^</srai>,nivel0.aiml
+0,* RECUPER+ ^ PRACTICA+ ^,*,*,No se pueden recuperar.,nivel0.aiml
+0,* RECUPER+ ^ EXAMEN+ ^,*,*,<srai>* RECUPERO UNA PRACTICA ^</srai>,nivel0.aiml
+0,^ ME ^ COPI+ ^,*,*,Tanto el que se copia como el que se deja copiar serán penalizados con el suspenso automático de la asignatura.,nivel0.aiml
+0,* SUSPEND+ ^ CONVOCATORIA ORDINARIA ^,*,*,Tienes otra oportunidad de aprobar la asignatura en el examen teórico-práctico de la convocatoria extraordinaria.,nivel0.aiml
+0,* SUSPEND+ ^ EXAMEN DE JUNIO ^,*,*,<srai>* SUSPENDO EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* SUSPEND+ ^ EXAMEN FINAL ^,*,*,<srai>* SUSPENDO EN LA CONVOCATORIA ORDINARIA ^</srai>,nivel0.aiml
+0,* VALE ^ PRACTICA+ * TEORI+ ^,*,*,Cada una vale un 50% sobre el total de la asignatura.,nivel0.aiml
+0,* VALE ^ TEORI+ * PRACTICA+ ^,*,*,<srai>* VALE LA PRACTICA Y LA TEORIA ^</srai>,nivel0.aiml
+0,# HORARIO * TUTORIA+ * PRACTICA+ ^,*,*,Lunes de 15:30 a 17:30 en D17 (ETSIIT)#NewlineLunes de 19:30 a 20:30 en D17 (ETSIIT)#NewlineMartes de 18:30 a 19:30 en D17 (ETSIIT)#NewlineViernes de 17:30 a 19:30 en D17 (ETSIIT),nivel0.aiml
+0,# APR+ ^ PRACTICA+ * NO ^ PRESENT+ ^ UNA PRACTICA ^,*,*,Sí. El requisito es que saques más de 3 en la nota final de prácticas.,nivel0.aiml
+0,_ APR+ ^ PRACTICA+ * NO ^ ENTREG+ ^ UNA PRACTICA ^,*,*,<srai># APROBAR LAS PRACTICAS SI NO PRESENTO UNA PRACTICA ^</srai>,nivel0.aiml
+0,_ APR+ * NO ^ ENTREG+ ^ UNA PRACTICA ^,*,*,<srai># APROBAR LAS PRACTICAS SI NO PRESENTO UNA PRACTICA ^</srai>,nivel0.aiml
+0,_ APR+ * NO ^ PRESENT+ ^ UNA PRACTICA ^,*,*,<srai># APROBAR LAS PRACTICAS SI NO PRESENTO UNA PRACTICA ^</srai>,nivel0.aiml
+0,# NOTA MINIMA * HA+ MEDIA ^,*,*,<srai>* NOTA MINIMA PARA APROBAR ^</srai>,nivel0.aiml
+0,# MINIMO * HA+ MEDIA ^,*,*,<srai>* NOTA MINIMA PARA APROBAR ^</srai>,nivel0.aiml
+0,* PRACTICA 1 * NO * NIVEL 3 ^,*,*,Obtendrás un 8 de 10 puntos posibles sobre el 25% de la práctica 1.,nivel0.aiml
+0,* PRACTICA 1 * NIVEL 3 ^ NO ^,*,*,<srai>* PUNTUACION CONSIGO EN LA PRACTICA 1 SI NO SUPERO EL NIVEL 3 ^</srai>,nivel0.aiml
+0,* PRACTICA 1 ^ SIN * NIVEL 0 ^,*,*,No. La práctica se evalua de forma progresiva para evaluar los distintos niveles tendrás que haber hecho los anteriores.,nivel0.aiml
+0,* NO * NIVEL 0 * PRACTICA 1 ^,*,*,<srai>* PRACTICA 1 SIN HACER EL NIVEL 0 ^</srai>,nivel0.aiml
+0,* NO ^ ASIST+ * DEFEN+ * PRACTICA+ ^,*,*,Deberás comunicarselo con antelación al profesor para que en un caso justificado puedas hacerlo otro día.,nivel0.aiml
+0,* NO ^ PUED+ * DEFEN+ * PRACTICA+ ^,*,*,<srai>* NO ASISTO A DEFENDER MI PRACTICA 1 ^</srai>,nivel0.aiml
+0,* PRUEBAS ^ TEORI+ ^,*,*,Cuatro pruebas con evaluación continua y una con evaluación única final.,nivel0.aiml
+0,* EXAMENES ^ TEORI+ ^,*,*,<srai>* PRUEBAS TEORICAS ^</srai>,nivel0.aiml
+0,* PRIMER+ * PRUEBA ^,*,*,<srai>* PRIMER * DE TEORIA ^</srai>,nivel0.aiml
+0,* PRIMER+ * PARCIAL ^,*,*,<srai>* PRIMER * DE TEORIA ^</srai>,nivel0.aiml
+0,* EXAMEN DE EJERCICIOS ^,*,*,<srai>* PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai>,nivel0.aiml
+0,* EXAMEN DE PRACTICAS ^,*,*,<srai>* PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai>,nivel0.aiml
+0,* NO * SUPER+ * NIVEL 3 * PRACTICA 1 ^,*,*,No pasa nada por intentarlo#Comma siempre que se hayan superado los niveles anteriores.,nivel0.aiml
+0,* NO * SUPER+ * PRACTICA 1 * NIVEL 3 ^,*,*,<srai>* NO SE SI SUPERARE EL NIVEL 3 DE LA PRACTICA 1</srai>,nivel0.aiml
+0,* NO * PAS+ * NIVEL 3 * PRACTICA 1 ^,*,*,<srai>* NO SE SI SUPERARE EL NIVEL 3 DE LA PRACTICA 1</srai>,nivel0.aiml
+0,* NO * PAS+ * PRACTICA 1 * NIVEL 3 ^,*,*,<srai>* NO SE SI SUPERARE EL NIVEL 3 DE LA PRACTICA 1</srai>,nivel0.aiml
+0,* C++ * PRACTICA+ ^,*,*,No#Comma en cada práctica se especificará el lenguaje en el que hay que programar.,nivel0.aiml
+0,* PRACTICA+ * C++ ^,*,*,<srai>* PUEDO HACER EN C++ LA PRACTICA 1 EN ESE LENGUAJE</srai>,nivel0.aiml
+0,* PRACTICA+ * OTRO LENGUAJE ^,*,*,<srai>* PUEDO HACER EN C++ LA PRACTICA 1 EN ESE LENGUAJE</srai>,nivel0.aiml
+0,* OTRO LENGUAJE * PRACTICA+ ^,*,*,<srai>* PUEDO HACER EN C++ LA PRACTICA 1 EN ESE LENGUAJE</srai>,nivel0.aiml
+0,* PRACTICA+ * LENGUAJE DIFERENTE ^,*,*,<srai>* PUEDO HACER EN C++ LA PRACTICA 1 EN ESE LENGUAJE</srai>,nivel0.aiml
+0,* AGENTE CONVERSACIONAL * DEF+ ^ PRACTICA+ ^,*,*,Sí#Comma pero serás tú el que sufra las consecuencias de su defensa.,nivel0.aiml
+0,* BOT * DEF+ ^ PRACTICA+ ^,*,*,<srai>* AGENTE CONVERSACIONAL PARA DEFENDER LAS PRACTICAS</srai>,nivel0.aiml
+0,* AGENTES CONVERSACIONALES * DEF+ ^ PRACTICA+ ^,*,*,<srai>* AGENTE CONVERSACIONAL PARA DEFENDER LAS PRACTICAS</srai>,nivel0.aiml
